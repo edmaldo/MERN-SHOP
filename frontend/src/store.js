@@ -35,10 +35,15 @@ const shippingLabelFromStorage = localStorage.getItem("shippingLabel")
   ? JSON.parse(localStorage.getItem("shippingLabel"))
   : {}
 
+const paymentMethodFromStorage = localStorage.getItem("paymentMethod")
+  ? JSON.parse(localStorage.getItem("paymentMethod"))
+  : "Choose Payment Method"
+
 const initialState = {
   cart: {
     cartItems: cartItemsFromStorage,
     shippingLabel: shippingLabelFromStorage,
+    paymentMethod: paymentMethodFromStorage,
   },
   userLogin: { userInfo: userInfoFromStorage },
 }
