@@ -19,6 +19,17 @@ const OrderScreen = ({ match }) => {
   const orderDetails = useSelector((state) => state.orderDetails)
   const { order, loading, error } = orderDetails
 
+  if (!loading) {
+    //   Calculate total price
+    const addDecimals = (num) => {
+      return (Math.round(num * 100) / 100).toFixed(2)
+    }
+
+    order.itemsPrice = addDecimals(
+      order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0)
+    )
+  }
+
   const orderPay = useSelector((state) => state.orderPay)
   const { loading: loadingPay, success: successPay } = orderPay
 
@@ -36,7 +47,7 @@ const OrderScreen = ({ match }) => {
       document.body.appendChild(script)
     }
 
-    if (!order || order._id !== orderId || successPay) {
+    if (!order || successPay) {
       dispatch({ type: ORDER_PAY_RESET })
       dispatch(getOrderDetails(orderId))
     } else if (!order.isPaid) {
@@ -46,10 +57,9 @@ const OrderScreen = ({ match }) => {
         setSdkReady(true)
       }
     }
-  }, [dispatch, order, orderId, successPay])
+  }, [dispatch, orderId, order, successPay])
 
   const successPaymentHandler = (paymentResult) => {
-    console.log(paymentResult)
     dispatch(payOrder(orderId, paymentResult))
   }
 
@@ -74,16 +84,16 @@ const OrderScreen = ({ match }) => {
               </p>
               <p>
                 <strong>Address: </strong>
-                {order.shippingLabel.address},{order.shippingLabel.city},
-                {order.shippingLabel.postalCode},{order.shippingLabel.country}
-                {order.isDelivered ? (
-                  <Message variant="success">
-                    Delivered on {order.deliveredAt}
-                  </Message>
-                ) : (
-                  <Message variant="danger">Not Delivered</Message>
-                )}
+                {order.shippingLabel.address}, {order.shippingLabel.city},{" "}
+                {order.shippingLabel.postalCode}, {order.shippingLabel.country}
               </p>
+              {order.isDelivered ? (
+                <Message variant="success">
+                  Delivered on {order.deliveredAt}
+                </Message>
+              ) : (
+                <Message variant="danger">Not Delivered</Message>
+              )}
             </ListGroup.Item>
 
             <ListGroup.Item>

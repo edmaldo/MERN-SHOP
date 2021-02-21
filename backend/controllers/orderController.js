@@ -8,7 +8,6 @@ const addOrderItems = asyncHandler(async (req, res) => {
   const {
     orderItems,
     shippingLabel,
-    paymentMethod,
     itemsPrice,
     taxPrice,
     shippingPrice,
@@ -18,12 +17,12 @@ const addOrderItems = asyncHandler(async (req, res) => {
   if (orderItems && orderItems.length === 0) {
     res.status(400)
     throw new Error("No order made")
+    return
   } else {
     const order = new Order({
       orderItems,
       user: req.user._id,
       shippingLabel,
-      paymentMethod,
       itemsPrice,
       taxPrice,
       shippingPrice,
