@@ -1,3 +1,4 @@
+import axios from "axios"
 import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -22,7 +23,6 @@ import {
   USER_DELETE_FAIL,
 } from "../constants/userConstants"
 import { ORDER_LIST_MY_RESET } from "../constants/orderConstants"
-import axios from "axios"
 
 export const login = (email, password) => async (dispatch) => {
   try {
