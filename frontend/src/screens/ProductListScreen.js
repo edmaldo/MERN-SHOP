@@ -71,15 +71,6 @@ const ProductListScreen = ({ history, match }) => {
         <Col>
           <h1>Products</h1>
         </Col>
-        <Col className="text-right">
-          <Button
-            variant="dark"
-            className="my-3"
-            onClick={createProductHandler}
-          >
-            <i className="fas fa-plus"></i> Create Product
-          </Button>
-        </Col>
       </Row>
       {loadingDelete && <Loader />}
       {errorDelete && <Message variant="danger">{errorDelete}</Message>}
@@ -111,8 +102,8 @@ const ProductListScreen = ({ history, match }) => {
                 <td>{product.brand}</td>
                 <td>
                   <LinkContainer to={`/admin/product/${product._id}/edit`}>
-                    <Button variant="light" className="btn-sm">
-                      <i className="fas fa-edit"></i>
+                    <Button variant="outline-primary" className="btn-sm">
+                      <i className="fas fa-edit"> Edit</i>
                     </Button>
                   </LinkContainer>
                   <Button

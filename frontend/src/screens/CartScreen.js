@@ -34,8 +34,11 @@ const CartScreen = ({ match, location, history }) => {
       <Col md={8}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
-          <Message>
-            Your Cart is Empty <Link to="/">Go Back</Link>
+          <Message variant="dark">
+            Cart is Empty:{" "}
+            <Link to="/" style={{ color: "white", fontWeight: "bold" }}>
+              RETURN TO STORE
+            </Link>
           </Message>
         ) : (
           <ListGroup variant="flush">

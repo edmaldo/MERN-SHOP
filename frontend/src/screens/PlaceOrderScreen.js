@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,6 +8,8 @@ import { createOrder } from "../actions/orderActions"
 
 const PlaceOrderScreen = ({ history }) => {
   const dispatch = useDispatch()
+
+  const [hitSubmit, setHitSubmit] = useState(false)
 
   const cart = useSelector((state) => state.cart)
 
@@ -37,10 +39,10 @@ const PlaceOrderScreen = ({ history }) => {
   const { order, success, error } = orderCreate
 
   useEffect(() => {
-    if (success) {
+    if (success && hitSubmit) {
       history.push(`/order/${order._id}`)
     }
-  }, [history, success])
+  }, [history, success, hitSubmit])
 
   const placeOrderHandler = () => {
     dispatch(
@@ -53,9 +55,9 @@ const PlaceOrderScreen = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     )
-  }
 
-  console.log(order)
+    setHitSubmit(true)
+  }
 
   return (
     <>
