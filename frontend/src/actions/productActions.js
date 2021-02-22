@@ -96,7 +96,7 @@ export const createProduct = () => async (dispatch) => {
     })
   } catch (error) {
     dispatch({
-      type: PRODUCT_CREATE_FAIL,
+      type: PRODUCT_UPDATE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
