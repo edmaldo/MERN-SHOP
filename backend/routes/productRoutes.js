@@ -4,9 +4,15 @@ import {
   getProductById,
   getProducts,
   deleteProduct,
+  updateProduct,
+  createProduct,
 } from "../controllers/productController.js"
 
-router.route("/").get(getProducts)
-router.route("/:id").get(getProductById).delete(deleteProduct)
+router.route("/").get(getProducts).post(createProduct)
+router
+  .route("/:id")
+  .get(getProductById)
+  .delete(deleteProduct)
+  .put(updateProduct)
 
 export default router
