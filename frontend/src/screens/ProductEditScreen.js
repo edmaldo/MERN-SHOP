@@ -5,6 +5,7 @@ import { Form, Button } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import { Helmet } from "react-helmet"
 import FormContainer from "../components/FormContainer"
 import { listProductDetails, updateProduct } from "../actions/productActions"
 import { PRODUCT_UPDATE_RESET } from "../constants/productConstants"
@@ -100,6 +101,9 @@ const ProductEditScreen = ({ match, history }) => {
 
   return (
     <>
+      <Helmet>
+        <title>ADMIN Product Edit</title>
+      </Helmet>
       <Link to="/admin/productlist" className="btn btn-dark my-3">
         Go Back
       </Link>

@@ -3,6 +3,7 @@ import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap"
 import { Link } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
+import { Helmet } from "react-helmet"
 import CheckoutSteps from "../components/CheckoutSteps"
 import { createOrder } from "../actions/orderActions"
 
@@ -61,6 +62,9 @@ const PlaceOrderScreen = ({ history }) => {
 
   return (
     <>
+      <Helmet>
+        <title>Place Order</title>
+      </Helmet>
       <CheckoutSteps step1 step2 step3 step4 />
       <Row>
         <Col md={8}>

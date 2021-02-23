@@ -5,6 +5,7 @@ import Product from "../components/Product"
 import { listProducts } from "../actions/productActions"
 import Loader from "../components/Loader"
 import Message from "../components/Message"
+import { Helmet } from "react-helmet"
 
 const HomeScreen = () => {
   const dispatch = useDispatch()
@@ -18,6 +19,9 @@ const HomeScreen = () => {
 
   return (
     <>
+      <Helmet>
+        <title>React Art Gallery</title>
+      </Helmet>
       <h1>Latest Products</h1>
       {loading ? (
         <Loader />

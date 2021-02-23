@@ -4,6 +4,7 @@ import { Table, Button } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import { Helmet } from "react-helmet"
 import { listOrders } from "../actions/orderActions"
 
 const OrderListScreen = ({ history }) => {
@@ -25,6 +26,9 @@ const OrderListScreen = ({ history }) => {
 
   return (
     <>
+      <Helmet>
+        <title>ADMIN Order List</title>
+      </Helmet>
       <h1>Orders</h1>
       {loading ? (
         <Loader />

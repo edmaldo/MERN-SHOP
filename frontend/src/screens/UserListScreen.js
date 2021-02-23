@@ -3,6 +3,7 @@ import { Table } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import { Helmet } from "react-helmet"
 import { listUsers } from "../actions/userActions"
 
 const UserListScreen = ({ history }) => {
@@ -24,6 +25,9 @@ const UserListScreen = ({ history }) => {
 
   return (
     <>
+      <Helmet>
+        <title>ADMIN User List</title>
+      </Helmet>
       <h1>Users</h1>
       {loading ? (
         <Loader />

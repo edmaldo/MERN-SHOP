@@ -4,6 +4,7 @@ import { Table, Button, Row, Col } from "react-bootstrap"
 import { useDispatch, useSelector } from "react-redux"
 import Message from "../components/Message"
 import Loader from "../components/Loader"
+import { Helmet } from "react-helmet"
 import {
   listProducts,
   deleteProduct,
@@ -67,6 +68,9 @@ const ProductListScreen = ({ history, match }) => {
 
   return (
     <>
+      <Helmet>
+        <title>ADMIN Product List</title>
+      </Helmet>
       <Row className="align-items-center">
         <Col>
           <h1>Products</h1>
